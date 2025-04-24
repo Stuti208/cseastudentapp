@@ -8,14 +8,14 @@ import React, { useState } from 'react'
      const sid=e.target.sid.value;
       //alert(sid);
       if(sid=='*'){
-       const data=await fetch("http://localhost:3002/admin/show");
+       const data=await fetch("https://cseastudentapp-wf9p.onrender.com/admin/show");
                    const res=await data.json();
                    console.log(res.msg);
                    setStudentData(res.msg);
 
   }
   else{
-    const data=await fetch(`http://localhost:3002/admin/showByEmail/${sid}`);
+    const data=await fetch(`https://cseastudentapp-wf9p.onrender.com/admin/showByEmail/${sid}`);
     const res=await data.json();
     console.log(res.msg);
     setStudentData(Array.isArray(res.msg)?res.msg:[res.msg]);
@@ -24,7 +24,7 @@ import React, { useState } from 'react'
 }
 
 async function handleDelete(email){
-  const data=await fetch(`http://localhost:3002/admin/deleteByEmail/${email}`,{
+  const data=await fetch(`https://cseastudentapp-wf9p.onrender.com/admin/deleteByEmail/${email}`,{
     method:'delete'
   });
   const res=await data.json();
@@ -36,7 +36,7 @@ async function handleUpdate(email){
   const newPassword=prompt('Enter password to update');
   if(!newName && !newPassword) return;
   //alert(newName+email);
-  const data=await fetch(`http://localhost:3002/admin/updateByEmail/${email}`,
+  const data=await fetch(`https://cseastudentapp-wf9p.onrender.com/admin/updateByEmail/${email}`,
     {
     method:'PATCH',
     body:JSON.stringify({name:newName,password:newPassword}),
